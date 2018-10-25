@@ -11,3 +11,5 @@ public class TextTransformerApplication {
         SpringApplication.run(TextTransformerApplication.class, args);
     }
 }
+
+//Kukson test commit
