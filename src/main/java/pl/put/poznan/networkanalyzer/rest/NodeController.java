@@ -10,27 +10,26 @@ import java.util.List;
 @RestController
 public class NodeController {
 
-    @Autowired
     private NodeService nodeService;
 
     @RequestMapping("/nodes")
     public List<Node> getAllNodes(){
-        return nodeService.getAllNodes();
+        return this.nodeService.getAllNodes();
     }
 
     @RequestMapping("/nodes/{id}")
     public Node getOneNode(@PathVariable String id){
-        return nodeService.getOneNode(id);
+        return this.nodeService.getOneNode(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/nodes")
-    public void addNode(@RequestBody Node n){nodeService.addNode(n);}
+    public void addNode(@RequestBody Node n){this.nodeService.addNode(n);}
 
     @RequestMapping(method = RequestMethod.PUT, value = "/nodes/{id}")
-    public void updateNode(@PathVariable String id, @RequestBody Node n){nodeService.updateNode(id,n);}
+    public void updateNode(@PathVariable String id, @RequestBody Node n){this.nodeService.updateNode(id,n);}
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/nodes/{id}")
-    public void deleteNode(@PathVariable String id){ nodeService.deleteNode(id);}
+    public void deleteNode(@PathVariable String id){ this.nodeService.deleteNode(id);}
 
 
 }
