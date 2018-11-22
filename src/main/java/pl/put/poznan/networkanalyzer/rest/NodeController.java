@@ -10,7 +10,9 @@ import java.util.List;
 @RestController
 public class NodeController {
 
-    @Autowired
+//    @Autowired
+//    private NodeService nodeService;
+
     private NodeService nodeService;
 
     @RequestMapping("/nodes")
