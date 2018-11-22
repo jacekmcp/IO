@@ -1,4 +1,4 @@
-package pl.put.poznan.networkanalyzer.Service;
+package pl.put.poznan.networkanalyzer.service;
 
 import org.springframework.stereotype.Service;
 import pl.put.poznan.networkanalyzer.model.Node;
@@ -13,8 +13,6 @@ public class NodeService {
     private ArrayList<Node> nodes = new ArrayList<>(Arrays.asList(
             new Node("1","nazwa","entry",null,null)
     ));
-
-
 
     public List<Node> getAllNodes(){
         return nodes;
