@@ -8,6 +8,7 @@ import pl.put.poznan.networkanalyzer.model.Node;
 import java.util.List;
 
 @RestController
+@RequestMapping("/node")
 public class NodeController {
 
     private final NodeService nodeService;
@@ -18,23 +19,23 @@ public class NodeController {
     }
 
 
-    @RequestMapping("/nodes")
+    @GetMapping
     public List<Node> getAllNodes(){
         return this.nodeService.getAllNodes();
     }
 
-    @RequestMapping("/nodes/{id}")
+    @GetMapping("/{id}")
     public Node getOneNode(@PathVariable String id){
         return this.nodeService.getOneNode(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/nodes")
+    @PostMapping
     public void addNode(@RequestBody Node n){this.nodeService.addNode(n);}
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/nodes/{id}")
+    @PutMapping("/{id}")
     public void updateNode(@PathVariable String id, @RequestBody Node n){this.nodeService.updateNode(id,n);}
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/nodes/{id}")
+    @DeleteMapping("/{id}")
     public void deleteNode(@PathVariable String id){ this.nodeService.deleteNode(id);}
 
 
