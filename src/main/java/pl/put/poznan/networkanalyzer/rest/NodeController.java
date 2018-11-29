@@ -10,7 +10,13 @@ import java.util.List;
 @RestController
 public class NodeController {
 
-    private NodeService nodeService;
+    private final NodeService nodeService;
+
+    @Autowired
+    public NodeController(NodeService nodeService) {
+        this.nodeService = nodeService;
+    }
+
 
     @RequestMapping("/nodes")
     public List<Node> getAllNodes(){

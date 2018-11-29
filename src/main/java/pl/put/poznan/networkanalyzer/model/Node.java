@@ -1,5 +1,7 @@
 package pl.put.poznan.networkanalyzer.model;
 
+import pl.put.poznan.networkanalyzer.model.Connection;
+
 import java.util.List;
 
 public class Node {
