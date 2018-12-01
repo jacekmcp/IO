@@ -1,5 +1,6 @@
 package pl.put.poznan.networkanalyzer.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.networkanalyzer.model.Connection;
 import pl.put.poznan.networkanalyzer.service.ConnectionService;
@@ -10,8 +11,13 @@ import java.util.List;
 @RequestMapping("/connection")
 public class ConnectionController {
 
-   // @Autowired
-    private ConnectionService connectionService;
+
+    private final ConnectionService connectionService;
+
+    @Autowired
+    public ConnectionController(ConnectionService connectionService) {
+        this.connectionService = connectionService;
+    }
 
     @GetMapping
     public List<Connection> getAllConnections() {return connectionService.getAllConnections();}
