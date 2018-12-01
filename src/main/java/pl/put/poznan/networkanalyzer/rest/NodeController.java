@@ -34,5 +34,4 @@ public class NodeController {
     @DeleteMapping("/{id}")
     public void deleteNode(@PathVariable String id){ nodeService.deleteNode(id);}
 
-
 }
