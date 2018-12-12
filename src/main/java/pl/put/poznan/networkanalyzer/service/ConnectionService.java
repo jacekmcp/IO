@@ -15,27 +15,43 @@ public class ConnectionService {
     public List<Connection> getAllConnections() {
         return connections;
     }
+    
 
-    public void setConnections(List<Connection> connections) {
-        connections = connections;
-    }
-
-    public Connection getConnection(String from, String to){
+    public Connection getConnection(Integer index){
         for(Connection c:connections) {
-            if(c.getTo().getId().equals(to) && c.getFrom().getId().equals(from))
+            if(c.getIndex()==index)
                 return c;}
         return null;
     }
 
-    public void updateConnection(String from, String to, Connection connection){
+    public boolean updateConnection(Integer index, Connection connection){
         for(Connection c: connections)
         {
-            if(c.getFrom().getId().equals(from) && c.getTo().getId().equals(to))
-                c.updateConnection(connection.getFrom(), connection.getTo(), connection.getValue());
+            if(c.getIndex()==index) {
+                c.setFrom(connection.getFrom());
+                c.setTo(connection.getTo());
+                c.setValue(connection.getValue());
+                return true;
+            }
         }
+        return false;
     }
 
     public void addConnection(Connection connection){
         connections.add(connection);
+    }
+
+    public void deleteConnection(Integer index) {
+        for(Connection c: connections) {
+            if(c.getIndex()==index) {
+            connections.remove(c);}
+        }
+    }
+
+    public void addListOfConnections(List<Connection> connectionsList) {
+        for(Connection c: connectionsList){
+            connections.add(c);
+            c.setIndex(connections.indexOf(c));
+        }
     }
 }

@@ -2,16 +2,25 @@ package pl.put.poznan.networkanalyzer.model;
 
 public class Connection {
 
+    private Integer index;
     private Node from;
     private Node to;
     private Integer value;
 
-    public Connection(Node from, Node to, Integer value){
+    public Connection(int index, Node from, Node to, Integer value ){
         this.from=from;
         this.to=to;
         this.value=value;
     }
-    public Connection(){};
+    public Connection(){}
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
+    }
 
     public Node getFrom() {
         return from;
