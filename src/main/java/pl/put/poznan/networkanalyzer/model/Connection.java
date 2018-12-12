@@ -7,7 +7,7 @@ public class Connection {
     private Node to;
     private Integer value;
 
-    public Connection(int index, Node from, Node to, Integer value ){
+    public Connection(Node from, Node to, Integer value ){
         this.from=from;
         this.to=to;
         this.value=value;
