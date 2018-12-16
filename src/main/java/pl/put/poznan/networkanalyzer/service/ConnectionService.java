@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class ConnectionService {
 
-    private List<Connection> connections = new ArrayList<Connection>();
+    private ArrayList<Connection> connections = new ArrayList<Connection>();
 
-    public List<Connection> getAllConnections() {
+    public ArrayList<Connection> getAllConnections() {
         return connections;
     }
     
@@ -38,6 +38,7 @@ public class ConnectionService {
     }
 
     public void addConnection(Connection connection){
+        connection.setIndex(this.getUniqId());
         connections.add(connection);
     }
 
@@ -48,10 +49,14 @@ public class ConnectionService {
         }
     }
 
-    public void addListOfConnections(List<Connection> connectionsList) {
-        for(Connection c: connectionsList){
-            connections.add(c);
-            c.setIndex(connections.indexOf(c));
+
+    private int getUniqId(){
+        int max = -1;
+
+        for (Connection connection: connections) {
+            if(connection.getIndex() > max) max = connection.getIndex();
         }
+
+        return max + 1;
     }
 }

@@ -19,7 +19,7 @@ public class NodeController {
     }
 
     @GetMapping("/{id}")
-    public Node getOneNode(@PathVariable String id){
+    public Node getOneNode(@PathVariable Integer id){
         return nodeService.getOneNode(id);
     }
 
@@ -32,9 +32,9 @@ public class NodeController {
     public void addNode(@RequestBody Node n){nodeService.addNode(n);}
 
     @PutMapping("/{id}")
-    public void updateNode(@PathVariable String id, @RequestBody Node n){nodeService.updateNode(id,n);}
+    public void updateNode(@PathVariable Integer id, @RequestBody Node n){nodeService.updateNode(id,n);}
 
     @DeleteMapping("/{id}")
-    public void deleteNode(@PathVariable String id){ nodeService.deleteNode(id);}
+    public void deleteNode(@PathVariable Integer id){ nodeService.deleteNode(id);}
 
 }

@@ -4,7 +4,7 @@ public class Connection {
 
 
     /**
-     * @param index unique index defining every Connection (starts with 0)
+     * @param index unique index defining every Connection (starts with 0) tak startuje od zera i jest unikalne jak twoja stara xD
      * @param from Node object - source of the Connection
      * @param to Node object - destination of the Connection
      * @param value given value of a Connection
