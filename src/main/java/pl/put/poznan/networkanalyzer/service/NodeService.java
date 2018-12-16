@@ -1,4 +1,4 @@
-package pl.put.poznan.networkanalyzer.Service;
+package pl.put.poznan.networkanalyzer.service;
 
 import org.springframework.stereotype.Service;
 import pl.put.poznan.networkanalyzer.model.Node;
