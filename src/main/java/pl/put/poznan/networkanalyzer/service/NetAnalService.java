@@ -31,9 +31,9 @@ public class NetAnalService {
     }
 
 
-//    public ArrayList<Connection> findBestRoute(Node startNode, Node endNode){
-//
-//    }
+    public ArrayList<Node> findBestRoute(Integer id1, Integer id2){
+        return nodes; // write BFS here
+    }
 
 
 
