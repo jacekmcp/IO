@@ -2,6 +2,15 @@ package pl.put.poznan.networkanalyzer.model;
 
 public class Connection {
 
+
+    /**
+     * @param index unique index defining every Connection (starts with 0)
+     * @param from Node object - source of the Connection
+     * @param to Node object - destination of the Connection
+     * @param value given value of a Connection
+     * @return
+     */
+
     private Integer index;
     private Node from;
     private Node to;
