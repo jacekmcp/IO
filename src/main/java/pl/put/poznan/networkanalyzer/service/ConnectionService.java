@@ -15,7 +15,7 @@ public class ConnectionService {
     public ArrayList<Connection> getAllConnections() {
         return connections;
     }
-    
+
     public Connection getConnection(Integer index) {
         for (Connection c : connections) {
             if (c.getIndex() == index)

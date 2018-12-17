@@ -38,6 +38,10 @@ public class ConnectionController {
         nodeService.setIO(connection);
 //        connection.setIndex(connectionService.getAllConnections().indexOf(connection)); //no czegos takwigo to ja dawno nie widzialem xD
     }
+    @PostMapping("/list")
+    public void addListOfConnections(@RequestBody List<Connection> connections) {
+        connectionService.addListOfConnections(connections);
+    }
 
     @PutMapping("/{id}")
     public String updateConnection(@PathVariable String id, @RequestBody Connection connection){

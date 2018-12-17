@@ -4,13 +4,13 @@ public class Connection {
 
 
     /**
-     * @param index unique index defining every Connection (starts with 0) tak startuje od zera i jest unikalne jak twoja stara xD
+     * @param index unique index defining every Connection
      * @param from Node object - source of the Connection
      * @param to Node object - destination of the Connection
      * @param value given value of a Connection
      * @return
      */
-
+    private static Integer indexNumber =0;
     private Integer index;
     private Node from;
     private Node to;
@@ -22,6 +22,18 @@ public class Connection {
         this.value=value;
     }
     public Connection(){}
+
+    public static Integer getIndexNumber() {
+        return indexNumber;
+    }
+
+    public static Integer getIndexNumberToAddConnection() {
+        return indexNumber++;
+    }
+
+    public static void setIndexNumber(Integer indexNumber) {
+            Connection.indexNumber = indexNumber;
+    }
 
     public Integer getIndex() {
         return index;

@@ -26,7 +26,7 @@ public class Node {
         this.type = type;
     }
 
-    public Node(String s, String nazwa, String entry, Object outgoing, Object incoming) {    }
+    public Node() {}
 
     public Integer getId() {
         return id;
