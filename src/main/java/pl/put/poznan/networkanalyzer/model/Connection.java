@@ -27,7 +27,7 @@ public class Connection {
         return indexNumber;
     }
 
-    public static Integer getIndexNumberToAddConnection() {
+    public static Integer getUniqueIndexNumber() {
         return indexNumber++;
     }
 

@@ -29,8 +29,6 @@ public class Node {
         this.type = type;
     }
 
-    public Node() {}
-
     public Integer getId() {
         return id;
     }

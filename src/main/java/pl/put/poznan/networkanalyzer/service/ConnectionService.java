@@ -1,11 +1,8 @@
 package pl.put.poznan.networkanalyzer.service;
 
-
 import org.springframework.stereotype.Service;
 import pl.put.poznan.networkanalyzer.model.Connection;
-
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ConnectionService {
@@ -38,7 +35,7 @@ public class ConnectionService {
     }
 
     public void addConnection(Connection connection) {
-        connection.setIndex(this.getUniqId());
+        connection.setIndex(connection.getUniqueIndexNumber());
         connections.add(connection);
     }
 
@@ -47,24 +44,6 @@ public class ConnectionService {
             if (c.getIndex() == index) {
                 connections.remove(c);
             }
-        }
-    }
-
-
-    private int getUniqId() {
-        int max = -1;
-
-        for (Connection connection : connections) {
-            if (connection.getIndex() > max) max = connection.getIndex();
-        }
-
-        return max + 1;
-    }
-
-    public void addListOfConnections(List<Connection> connectionsList) {
-        for (Connection c : connectionsList) {
-            connections.add(c);
-            c.setIndex(connections.indexOf(c));
         }
     }
 }
