@@ -11,6 +11,8 @@ import java.util.List;
 public class ConnectionService {
 
     private ArrayList<Connection> connections = new ArrayList<Connection>();
+    private NodeService nodeService = new NodeService();
+
 
     public ArrayList<Connection> getAllConnections() {
         return connections;
@@ -61,10 +63,4 @@ public class ConnectionService {
         return max + 1;
     }
 
-    public void addListOfConnections(List<Connection> connectionsList) {
-        for (Connection c : connectionsList) {
-            connections.add(c);
-            c.setIndex(connections.indexOf(c));
-        }
-    }
 }

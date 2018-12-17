@@ -54,7 +54,10 @@ public class ConnectionController {
 
     @PostMapping("/list")
     public void addListOfConnections(@RequestBody List<Connection> connections){
-        connectionService.addListOfConnections(connections);
+        for (Connection c : connections) {
+            connectionService.addConnection(c);
+            nodeService.setIO(c);
+        }
     }
 
 }
