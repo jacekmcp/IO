@@ -15,19 +15,19 @@ public class ConnectionService {
     public ArrayList<Connection> getAllConnections() {
         return connections;
     }
-    
 
-    public Connection getConnection(Integer index){
-        for(Connection c:connections) {
-            if(c.getIndex()==index)
-                return c;}
+
+    public Connection getConnection(Integer index) {
+        for (Connection c : connections) {
+            if (c.getIndex() == index)
+                return c;
+        }
         return null;
     }
 
-    public boolean updateConnection(Integer index, Connection connection){
-        for(Connection c: connections)
-        {
-            if(c.getIndex()==index) {
+    public boolean updateConnection(Integer index, Connection connection) {
+        for (Connection c : connections) {
+            if (c.getIndex() == index) {
                 c.setFrom(connection.getFrom());
                 c.setTo(connection.getTo());
                 c.setValue(connection.getValue());
@@ -37,26 +37,34 @@ public class ConnectionService {
         return false;
     }
 
-    public void addConnection(Connection connection){
+    public void addConnection(Connection connection) {
         connection.setIndex(this.getUniqId());
         connections.add(connection);
     }
 
     public void deleteConnection(Integer index) {
-        for(Connection c: connections) {
-            if(c.getIndex()==index) {
-            connections.remove(c);}
+        for (Connection c : connections) {
+            if (c.getIndex() == index) {
+                connections.remove(c);
+            }
         }
     }
 
 
-    private int getUniqId(){
+    private int getUniqId() {
         int max = -1;
 
-        for (Connection connection: connections) {
-            if(connection.getIndex() > max) max = connection.getIndex();
+        for (Connection connection : connections) {
+            if (connection.getIndex() > max) max = connection.getIndex();
         }
 
         return max + 1;
+    }
+
+    public void addListOfConnections(List<Connection> connectionsList) {
+        for (Connection c : connectionsList) {
+            connections.add(c);
+            c.setIndex(connections.indexOf(c));
+        }
     }
 }

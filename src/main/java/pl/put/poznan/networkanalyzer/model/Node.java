@@ -1,5 +1,7 @@
 package pl.put.poznan.networkanalyzer.model;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +10,12 @@ public class Node {
     private Integer id;
     private String name;
     private String type;//entry/exit/regular - to może być String, czy coś innego?
-    private ArrayList<Connection> outgoing = null;
-    private ArrayList<Connection> incoming = null;
+    private ArrayList<Integer> outgoing = null;
+    private ArrayList<Integer> incoming = null;
 
+    public Node(){}
 
-    public Node(Integer id, String name, String type, ArrayList<Connection> outgoing, ArrayList<Connection> incoming) {
+    public Node(Integer id, String name, String type, ArrayList<Integer> outgoing, ArrayList<Integer> incoming) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -52,27 +55,27 @@ public class Node {
         this.type = type;
     }
 
-    public ArrayList<Connection> getOutgoing() {
+    public ArrayList<Integer> getOutgoing() {
         return outgoing;
     }
 
-    public void setOutgoing(ArrayList<Connection> outgoing) {
+    public void setOutgoing(ArrayList<Integer> outgoing) {
         this.outgoing = outgoing;
     }
 
-    public ArrayList<Connection> getIncoming() {
+    public ArrayList<Integer> getIncoming() {
         return incoming;
     }
 
-    public void setIncoming(ArrayList<Connection> incoming) {
+    public void setIncoming(ArrayList<Integer> incoming) {
         this.incoming = incoming;
     }
 
-    public void addIncoming(Connection connection){
+    public void addIncoming(Integer connection){
         this.incoming.add(connection);
     }
 
-    public void addOutgoing(Connection connection){
+    public void addOutgoing(Integer connection){
         this.outgoing.add(connection);
     }
 
