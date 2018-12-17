@@ -5,6 +5,8 @@ import pl.put.poznan.networkanalyzer.model.Connection;
 import pl.put.poznan.networkanalyzer.service.ConnectionService;
 import pl.put.poznan.networkanalyzer.service.NodeService;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,7 +38,6 @@ public class ConnectionController {
     public void addConnection(@RequestBody Connection connection){
         connectionService.addConnection(connection);
         nodeService.setIO(connection);
-//        connection.setIndex(connectionService.getAllConnections().indexOf(connection)); //no czegos takwigo to ja dawno nie widzialem xD
     }
 
     @PutMapping("/{id}")
@@ -52,6 +53,7 @@ public class ConnectionController {
         connectionService.deleteConnection(Integer.parseInt(id));
     }
 
+
     @PostMapping("/list")
     public void addListOfConnections(@RequestBody List<Connection> connections){
         for (Connection c : connections) {
@@ -59,5 +61,4 @@ public class ConnectionController {
             nodeService.setIO(c);
         }
     }
-
 }

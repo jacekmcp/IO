@@ -56,6 +56,5 @@ public class NodeService {
                 node.addIncoming(connection.getIndex());
             }
         }
-
     }
 }
