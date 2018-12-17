@@ -39,12 +39,6 @@ public class ConnectionController {
         connectionService.addConnection(connection);
         nodeService.setIO(connection);
     }
-    @PostMapping("/list")
-    public void addListOfConnections(@RequestBody ArrayList<Connection> connections) {
-        for(Connection c: connections) {
-        addConnection(c);
-        }
-    }
 
     @PutMapping("/{id}")
     public String updateConnection(@PathVariable String id, @RequestBody Connection connection){
@@ -59,4 +53,12 @@ public class ConnectionController {
         connectionService.deleteConnection(Integer.parseInt(id));
     }
 
+
+    @PostMapping("/list")
+    public void addListOfConnections(@RequestBody List<Connection> connections){
+        for (Connection c : connections) {
+            connectionService.addConnection(c);
+            nodeService.setIO(c);
+        }
+    }
 }

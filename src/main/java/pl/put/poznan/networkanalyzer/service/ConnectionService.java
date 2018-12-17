@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class ConnectionService {
 
     private ArrayList<Connection> connections = new ArrayList<Connection>();
+    private NodeService nodeService = new NodeService();
+
 
     public ArrayList<Connection> getAllConnections() {
         return connections;
