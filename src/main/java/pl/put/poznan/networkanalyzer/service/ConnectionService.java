@@ -16,7 +16,7 @@ public class ConnectionService {
 
     public Connection getConnection(Integer index) {
         for (Connection c : connections) {
-            if (c.getIndex() == index)
+            if (c.getConnectionIndex().equals(index))
                 return c;
         }
         return null;
@@ -24,26 +24,28 @@ public class ConnectionService {
 
     public boolean updateConnection(Integer index, Connection connection) {
         for (Connection c : connections) {
-            if (c.getIndex() == index) {
+            if (c.getConnectionIndex()== index) {
                 c.setFrom(connection.getFrom());
                 c.setTo(connection.getTo());
                 c.setValue(connection.getValue());
-                return true;
+                return true;  //updated
             }
         }
-        return false;
+        return false; //not updated
     }
 
     public void addConnection(Connection connection) {
-        connection.setIndex(connection.getUniqueIndexNumber());
+        connection.setConnectionIndex(connection.getUniqueIndexNumber());
         connections.add(connection);
     }
 
     public void deleteConnection(Integer index) {
         for (Connection c : connections) {
-            if (c.getIndex() == index) {
+            if (c.getConnectionIndex() == index) {
                 connections.remove(c);
+                return;
             }
+
         }
     }
 }

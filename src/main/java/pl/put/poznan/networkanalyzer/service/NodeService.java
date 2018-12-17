@@ -51,9 +51,9 @@ public class NodeService {
 
         for (Node node: nodes) {
             if(node.getId() == outNode){
-                node.addOutgoing(connection.getIndex());
+                node.addOutgoing(connection.getConnectionIndex());
             }else if(node.getId() == inNode){
-                node.addIncoming(connection.getIndex());
+                node.addIncoming(connection.getConnectionIndex());
             }
         }
     }

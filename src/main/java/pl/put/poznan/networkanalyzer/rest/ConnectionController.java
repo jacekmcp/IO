@@ -42,10 +42,10 @@ public class ConnectionController {
     @PostMapping("/list")
     public void addListOfConnections(@RequestBody ArrayList<Connection> connections) {
         for(Connection c: connections) {
-        addConnection(c);
+        connectionService.addConnection(c);
+        nodeService.setIO(c);
         }
     }
-
     @PutMapping("/{id}")
     public String updateConnection(@PathVariable String id, @RequestBody Connection connection){
         if(!connectionService.updateConnection(Integer.parseInt(id), connection)){  //jeśli nie został znaleziony indeks, wykonuje się if
