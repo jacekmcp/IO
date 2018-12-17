@@ -12,11 +12,11 @@ public class Connection {
      */
     private static Integer indexNumber =0;
     private Integer index;
-    private Node from;
-    private Node to;
+    private Integer from;
+    private Integer to;
     private Integer value;
 
-    public Connection(Node from, Node to, Integer value ){
+    public Connection(Integer from, Integer to, Integer value ){
         this.from=from;
         this.to=to;
         this.value=value;
@@ -43,19 +43,19 @@ public class Connection {
         this.index = index;
     }
 
-    public Node getFrom() {
+    public Integer getFrom() {
         return from;
     }
 
-    public void setFrom(Node from) {
+    public void setFrom(Integer from) {
         this.from = from;
     }
 
-    public Node getTo() {
+    public Integer getTo() {
         return to;
     }
 
-    public void setTo(Node to) {
+    public void setTo(Integer to) {
         this.to = to;
     }
 
@@ -67,7 +67,7 @@ public class Connection {
         this.value = value;
     }
 
-    public void updateConnection(Node from, Node to, Integer value)
+    public void updateConnection(Integer from, Integer to, Integer value)
     {
         this.from=from;
         this.to=to;

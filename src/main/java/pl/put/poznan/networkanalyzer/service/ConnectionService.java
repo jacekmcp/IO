@@ -16,6 +16,7 @@ public class ConnectionService {
         return connections;
     }
 
+
     public Connection getConnection(Integer index) {
         for (Connection c : connections) {
             if (c.getIndex() == index)
@@ -37,7 +38,7 @@ public class ConnectionService {
     }
 
     public void addConnection(Connection connection) {
-        connection.setIndex(connection.getIndexNumberToAddConnection());
+        connection.setIndex(this.getUniqId());
         connections.add(connection);
     }
 
@@ -47,6 +48,17 @@ public class ConnectionService {
                 connections.remove(c);
             }
         }
+    }
+
+
+    private int getUniqId() {
+        int max = -1;
+
+        for (Connection connection : connections) {
+            if (connection.getIndex() > max) max = connection.getIndex();
+        }
+
+        return max + 1;
     }
 
     public void addListOfConnections(List<Connection> connectionsList) {

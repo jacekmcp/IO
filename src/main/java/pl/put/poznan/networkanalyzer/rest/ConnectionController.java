@@ -55,4 +55,10 @@ public class ConnectionController {
     public void deleteConnection(@PathVariable String id){
         connectionService.deleteConnection(Integer.parseInt(id));
     }
+
+    @PostMapping("/list")
+    public void addListOfConnections(@RequestBody List<Connection> connections){
+        connectionService.addListOfConnections(connections);
+    }
+
 }

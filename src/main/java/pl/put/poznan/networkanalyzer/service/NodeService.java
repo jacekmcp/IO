@@ -11,9 +11,7 @@ import java.util.List;
 @Service
 public class NodeService {
 
-    private ArrayList<Node> nodes = new ArrayList<>(Arrays.asList(
-            new Node(1,"nazwa","entry",null,null)
-    ));
+    private ArrayList<Node> nodes = new ArrayList<>();
 
     public ArrayList<Node> getAllNodes(){
         return nodes;
@@ -48,14 +46,14 @@ public class NodeService {
 
     public void setIO(Connection connection) {
 
-        Node outNode = connection.getFrom();
-        Node inNode = connection.getTo();
+        Integer outNode = connection.getFrom();
+        Integer inNode = connection.getTo();
 
         for (Node node: nodes) {
-            if(node.getId() == outNode.getId()){
-                node.addOutgoing(connection);
-            }else if(node.getId() == inNode.getId()){
-                node.addIncoming(connection);
+            if(node.getId() == outNode){
+                node.addOutgoing(connection.getIndex());
+            }else if(node.getId() == inNode){
+                node.addIncoming(connection.getIndex());
             }
         }
     }
