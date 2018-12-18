@@ -1,19 +1,36 @@
 package pl.put.poznan.networkanalyzer.model;
 
-import pl.put.poznan.networkanalyzer.model.Connection;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class represents a model of Node
+ * @author Michal Kukiela
+ */
 public class Node {
 
-    private String id;
+    private Integer id;
     private String name;
-    private String type;//entry/exit/regular - to może być String, czy coś innego?
-    private List<Connection> outgoing = null;
-    private List<Connection> incoming = null;
+    private String type;//entry/exit/regular
+    private ArrayList<Integer> outgoing = null;
+    private ArrayList<Integer> incoming = null;
 
+    /**
+     * Empty constructor
+     */
+    public Node(){}
 
-    public Node(String id, String name, String type, List<Connection> outgoing, List<Connection> incoming) {
+    /**
+     * Full constructor
+     * @param id
+     * @param name
+     * @param type      entry/exit/regular
+     * @param outgoing  list of indexes of outgoing arces (connections) @see Connection
+     * @param incoming  list of indexes of incoming arces (connections) @see Connection
+     */
+    public Node(Integer id, String name, String type, ArrayList<Integer> outgoing, ArrayList<Integer> incoming) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -21,19 +38,23 @@ public class Node {
         this.incoming = incoming;
     }
 
-    public Node(String id, String name, String type) {
+    /**
+     * Constructor without any connections
+     * @param id
+     * @param name
+     * @param type  entry/exit/regular
+     */
+    public Node(Integer id, String name, String type) {
         this.id = id;
         this.name = name;
         this.type = type;
     }
 
-    public Node() {    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,19 +74,45 @@ public class Node {
         this.type = type;
     }
 
-    public List<Connection> getOutgoing() {
+    public ArrayList<Integer> getOutgoing() {
         return outgoing;
     }
 
-    public void setOutgoing(List<Connection> outgoing) {
+    public void setOutgoing(ArrayList<Integer> outgoing) {
         this.outgoing = outgoing;
     }
 
-    public List<Connection> getIncoming() {
+    public ArrayList<Integer> getIncoming() {
         return incoming;
     }
 
-    public void setIncoming(List<Connection> incoming) {
+    public void setIncoming(ArrayList<Integer> incoming) {
         this.incoming = incoming;
+    }
+
+    public void addIncoming(Integer connection){
+        this.incoming.add(connection);
+    }
+
+    public void addOutgoing(Integer connection){
+        this.outgoing.add(connection);
+    }
+
+    /**
+     * Deletes one particular connection from list of incoming connections
+     * @param connection    connection to delete
+     * @see Connection
+     */
+    public void deleteIncoming(Connection connection){ // not sure if this construction works fine. it recognize object via reference, i guess. it's wrong TODO
+        this.incoming.remove(connection);
+    }
+
+    /**
+     * Deletes one particular connection from list of outgoing connections
+     * @param connection    connection to delete
+     * @see Connection
+     */
+    public void deleteOutgoing(Connection connection){ // same as above
+        this.outgoing.remove(connection);
     }
 }

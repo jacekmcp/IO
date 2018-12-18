@@ -7,6 +7,11 @@ import pl.put.poznan.networkanalyzer.model.Node;
 
 import java.util.List;
 
+/**
+ * Controller for nodeService.
+ * @see NodeService
+ * @author Michal Kukiela
+ */
 @RestController
 @RequestMapping("/node")
 public class NodeController {
@@ -24,7 +29,7 @@ public class NodeController {
     }
 
     @GetMapping("/{id}")
-    public Node getOneNode(@PathVariable String id){
+    public Node getOneNode(@PathVariable int id){
         return this.nodeService.getOneNode(id);
     }
 
@@ -32,8 +37,8 @@ public class NodeController {
     public void addNode(@RequestBody Node n){this.nodeService.addNode(n);}
 
     @PutMapping("/{id}")
-    public void updateNode(@PathVariable String id, @RequestBody Node n){this.nodeService.updateNode(id,n);}
+    public void updateNode(@PathVariable int id, @RequestBody Node n){this.nodeService.updateNode(id,n);}
 
     @DeleteMapping("/{id}")
-    public void deleteNode(@PathVariable String id){ this.nodeService.deleteNode(id);}
+    public void deleteNode(@PathVariable int id){ this.nodeService.deleteNode(id);}
 }
