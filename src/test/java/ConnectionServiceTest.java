@@ -1,4 +1,9 @@
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import pl.put.poznan.networkanalyzer.model.Connection;
 import pl.put.poznan.networkanalyzer.service.ConnectionService;
 
@@ -10,9 +15,23 @@ import static org.junit.Assert.*;
 
 public class ConnectionServiceTest {
 
+    ConnectionService service =  null;
+    Connection testConnection = null;
+
+    @Before
+    public void setUptest() throws Exception{
+        service = new ConnectionService();
+    }
+
+    @After
+    public void resetTest(){
+       service = null;
+       testConnection.setIndexNumber(0); //ponieważ to statyczne pole indeksowane jest w connections, musimy
+    }                                   //wyzerowac pole po każdej "sesji" service (zeby znowu było od 0, a jego wartosci "przewidywalne")
+
     @Test
     public void addConnectionAndDeleteConnectionTest(){
-    ConnectionService service = new ConnectionService();
+    //ConnectionService service = new ConnectionService();
     Connection c1 = new Connection(1,2,3);
     Connection c2 = new Connection(2, 3, 4);
     service.addConnection(c1);
@@ -25,7 +44,7 @@ public class ConnectionServiceTest {
 
     @Test
     public void getConnectionTest(){
-        ConnectionService service = new ConnectionService();
+        //ConnectionService service = new ConnectionService();
         Connection c1 = new Connection(1, 2, 5);
         for(int i =0; i<10; i++) {
             Connection c2 = new Connection(1, i, 5);
@@ -39,7 +58,7 @@ public class ConnectionServiceTest {
 
     @Test
     public void updateConnectionTest() {
-        ConnectionService service = new ConnectionService();
+      //  ConnectionService service = new ConnectionService();
         Connection c1 = new Connection(1, 2, 5);
         Integer index = 5;
         service.addConnection(c1); // addConnection automaticaly add next connection number()
@@ -53,7 +72,7 @@ public class ConnectionServiceTest {
 
     @Test
     public void updateConnectionTest2() {
-        ConnectionService service = new ConnectionService();
+       // ConnectionService service = new ConnectionService();
         Connection c1 = new Connection(1, 2, 5);
         Integer index = 1;
         service.addConnection(c1); // addConnection automaticaly add next connection number()
@@ -65,7 +84,7 @@ public class ConnectionServiceTest {
 
     @Test (expected = NullPointerException.class)
     public void connectionServiceGeneralTest(){
-        ConnectionService service = new ConnectionService();
+       // ConnectionService service = new ConnectionService();
         Connection c1 = new Connection(1,2,3);
         Connection c2 = new Connection(2,1,5);
         service.addConnection(c1);
