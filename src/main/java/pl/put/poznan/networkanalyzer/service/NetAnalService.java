@@ -82,6 +82,30 @@ public class NetAnalService {
         return shortestPathList;
     }
 
+    public void greedy(int id1,int id2) {
+        LinkedList<Integer> stack = new LinkedList<>();
+        stack.add(id1);
+        while(!stack.isEmpty()){
+            open.add(stack.getFirst());
+            for(Integer item: nodeService.getOneNode(stack.getFirst()).getOutgoing()){
+                stack.add(item);
+                if(item == id2){
+                    break;
+                }
+            }
+            stack.sort((a,b) ->{
+                if(connectionService.getConnectionByNodes(id1,a).getValue()>connectionService.getConnectionByNodes(id1,b).getValue()){
+                    return a;
+                } else {
+                    return b;
+                }
+            });
+            int temp = stack.getFirst();
+            stack.clear();
+            stack.add(temp);
+        }
+    }
+
     public int calculateCost(ArrayList<Integer> spath){
         int sum = 0;
         for(int i=0;i<spath.size()-1;i++){
@@ -91,10 +115,14 @@ public class NetAnalService {
     }
 
     public Path findBestRoute(Integer id1, Integer id2, String type){
+        path.clearPath();
         if(type.equals("BFS")){
             path.setFullPath(BFSPath(id1,id2,"BFS"));
-        } else {
+        } else if(type.equals("DFS")){
             path.setFullPath(BFSPath(id1,id2,"DFS"));
+        } else if(type.equals("greedy")){
+            greedy(id1,id2);
+            path.setFullPath(open);
         }
         path.setFullCost(calculateCost(path.getPath()));
         return path;
