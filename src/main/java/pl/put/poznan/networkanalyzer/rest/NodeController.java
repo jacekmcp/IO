@@ -7,6 +7,11 @@ import pl.put.poznan.networkanalyzer.model.Node;
 
 import java.util.List;
 
+/**
+ * Controller for nodeService.
+ * @see NodeService
+ * @author Michal Kukiela
+ */
 @RestController
 @RequestMapping("/node")
 public class NodeController {
