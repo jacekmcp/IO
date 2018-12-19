@@ -48,4 +48,15 @@ public class ConnectionService {
 
         }
     }
+
+    public Connection getConnectionByNodes(Integer id1, Integer id2){
+        Connection con = new Connection();
+        con.setValue(-1);
+        for(Connection c: connections){
+            if(c.getFrom()==id1 && c.getTo()==id2){
+                con = c;
+            }
+        }
+        return con;
+    }
 }

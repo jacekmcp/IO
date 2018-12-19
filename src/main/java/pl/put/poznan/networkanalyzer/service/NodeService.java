@@ -18,12 +18,13 @@ public class NodeService {
     }
 
     public Node getOneNode(Integer id){
+        Node temp = new Node();
         for (Node n: nodes) {
             if(n.getId().equals(id)){
-                return n;
+                temp =  n;
             }
         }
-        return null;
+        return temp;
     }
 
     public void addNode(Node n){
@@ -45,16 +46,16 @@ public class NodeService {
     }
 
     public void setIO(Connection connection) {
-
         Integer outNode = connection.getFrom();
         Integer inNode = connection.getTo();
 
         for (Node node: nodes) {
             if(node.getId() == outNode){
-                node.addOutgoing(connection.getConnectionIndex());
+                node.addOutgoing(connection.getTo());
             }else if(node.getId() == inNode){
-                node.addIncoming(connection.getConnectionIndex());
+                node.addIncoming(connection.getFrom());
             }
         }
     }
+    
 }

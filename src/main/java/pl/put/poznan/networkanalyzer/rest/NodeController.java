@@ -37,4 +37,11 @@ public class NodeController {
     @DeleteMapping("/{id}")
     public void deleteNode(@PathVariable Integer id){ nodeService.deleteNode(id);}
 
+    @PostMapping("/list")
+    public void addListNode(@RequestBody List<Node> nodes){
+        for(Node item:nodes){
+            nodeService.addNode(item);
+        }
+    }
+
 }
