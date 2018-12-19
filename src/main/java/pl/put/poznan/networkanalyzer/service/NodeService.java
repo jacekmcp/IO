@@ -19,6 +19,7 @@ public class NodeService {
 
     public Node getOneNode(Integer id){
         Node temp = new Node();
+        temp.setId(-1);
         for (Node n: nodes) {
             if(n.getId().equals(id)){
                 temp =  n;
