@@ -35,11 +35,11 @@ public class Connection {
             Connection.indexNumber = indexNumber;
     }
 
-    public Integer getIndex() {
+    public Integer getConnectionIndex() {
         return index;
     }
 
-    public void setIndex(Integer index) {
+    public void setConnectionIndex(Integer index) {
         this.index = index;
     }
 
