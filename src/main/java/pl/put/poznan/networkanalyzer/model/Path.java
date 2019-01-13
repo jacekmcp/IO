@@ -1,6 +1,7 @@
 package pl.put.poznan.networkanalyzer.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Path{
     ArrayList<Integer> path;
@@ -38,5 +39,22 @@ public class Path{
 
     public void setCost(Integer cost) {
         this.cost += cost;
+    }
+
+    public void clearPath(){
+        this.path.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Path path1 = (Path) o;
+        return Objects.equals(path, path1.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path);
     }
 }

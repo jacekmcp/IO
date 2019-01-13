@@ -3,6 +3,7 @@ package pl.put.poznan.networkanalyzer.service;
 import org.springframework.stereotype.Service;
 import pl.put.poznan.networkanalyzer.model.Connection;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ConnectionService {
@@ -55,7 +56,7 @@ public class ConnectionService {
     }
 
     public Connection getConnectionByNodes(Integer id1, Integer id2){
-        Connection con = new Connection();
+        Connection con = new Connection(id1,id2,-1);
         con.setValue(-1);
         for(Connection c: connections){
             if(c.getFrom()==id1 && c.getTo()==id2){

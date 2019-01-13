@@ -32,8 +32,7 @@ public class NodeService {
      * @return node with given id
      */
     public Node getOneNode(Integer id){
-        Node temp = new Node();
-        temp.setId(-1);
+        Node temp = new Node(-1,"TEST","TEST",new ArrayList<>(), new ArrayList<>());
         for (Node n: nodes) {
             if(n.getId().equals(id)){
                 temp =  n;
