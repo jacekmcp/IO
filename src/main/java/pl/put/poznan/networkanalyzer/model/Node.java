@@ -76,7 +76,7 @@ public class Node {
         this.type = type;
     }
 
-    public List<Integer> getOutgoing() {
+    public ArrayList<Integer> getOutgoing() {
         return outgoing;
     }
 

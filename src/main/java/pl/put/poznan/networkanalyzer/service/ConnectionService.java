@@ -8,9 +8,9 @@ import java.util.List;
 @Service
 public class ConnectionService {
 
-    private List<Connection> connections = new ArrayList<Connection>();
+    private ArrayList<Connection> connections = new ArrayList<Connection>();
 
-    public List<Connection> getAllConnections() {
+    public ArrayList<Connection> getAllConnections() {
         return connections;
     }
 
