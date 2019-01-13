@@ -51,7 +51,6 @@ public class ConnectionServiceTest {
             service.addConnection(c2); //adding few connections(values not important);
         }
         service.addConnection(c1);
-        System.out.println(c1.getConnectionIndex());
         assertNull(service.getConnection(13));
         assertEquals(c1.getValue(), service.getConnection(3).getValue());
     }
@@ -74,10 +73,8 @@ public class ConnectionServiceTest {
     public void updateConnectionTest2() {
        // ConnectionService service = new ConnectionService();
         Connection c1 = new Connection(1, 2, 5);
-        Integer index = 1;
+        Integer index = 0;
         service.addConnection(c1); // addConnection automaticaly add next connection number()
-        service.addConnection(c1);
-
         Connection c2 = new Connection(3, 2, 7);
         assertTrue(service.updateConnection(index, c2));
     }
@@ -98,13 +95,16 @@ public class ConnectionServiceTest {
 
     @Test
     public void connectionServiceGetConnectionTest(){
-        //Connection mockConn= mock(Connection.class);
+        when(mockConnection.getFrom()).thenReturn(1);
+        when(mockConnection.getTo()).thenReturn(2);
         when(mockConnection.getConnectionIndex()).thenReturn(5);
         service.addConnection(mockConnection);
         assertTrue(service.getConnection(5).equals(mockConnection));
     }
     @Test
     public void connectionServiceAddConnectionTest() {
+        when(mockConnection.getFrom()).thenReturn(1);
+        when(mockConnection.getTo()).thenReturn(2);
         when(mockConnection.getConnectionIndex()).thenReturn(123);
         service.addConnection(mockConnection);
         boolean isThere = false;
