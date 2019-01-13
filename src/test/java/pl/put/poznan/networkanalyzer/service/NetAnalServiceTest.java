@@ -71,11 +71,31 @@ public class NetAnalServiceTest {
         Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(3),Matchers.eq(5))).thenReturn(connectionList.get(3));
         Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(4),Matchers.eq(5))).thenReturn(connectionList.get(4));
 
-        for (int i = 0; i < 5; i++) {
-            Mockito.when(nodeService.getOneNode(i)).thenReturn(nodeList.get(i));
-        }
+        Mockito.when(nodeService.getOneNode(Mockito.anyInt())).thenAnswer(invocationOnMock -> this.nodeList.get((Integer) invocationOnMock.getArguments()[0]-1));
 
         ArrayList<Integer> givenPath = netAnalService.BFSPath(1,5,"BFS");
+        ArrayList<Integer> expectedPath = new ArrayList<>();
+        expectedPath.add(5);
+        expectedPath.add(4);
+        expectedPath.add(1);
+
+        assertEquals(expectedPath,givenPath);
+    }
+
+    @Test
+    public void dfsTest_dfsType() {
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.anyInt(),Matchers.anyInt())).thenReturn(
+                new Connection(1,1,-1)
+        );
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(2))).thenReturn(connectionList.get(0));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(3))).thenReturn(connectionList.get(1));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(4))).thenReturn(connectionList.get(2));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(3),Matchers.eq(5))).thenReturn(connectionList.get(3));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(4),Matchers.eq(5))).thenReturn(connectionList.get(4));
+
+        Mockito.when(nodeService.getOneNode(Mockito.anyInt())).thenAnswer(invocationOnMock -> this.nodeList.get((Integer) invocationOnMock.getArguments()[0]-1));
+
+        ArrayList<Integer> givenPath = netAnalService.BFSPath(1,5,"DFS");
         ArrayList<Integer> expectedPath = new ArrayList<>();
         expectedPath.add(5);
         expectedPath.add(4);
