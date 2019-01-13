@@ -71,7 +71,7 @@ public class NodeServiceTest {
         ns.addNode(n);
 
         ns.deleteNode(id);
-        assertTrue(ns.getOneNode(id).getId()>0);
+        assertTrue(ns.getOneNode(id).getId()<0);
 //        assertNull(ns.getOneNode(id));
     }
 

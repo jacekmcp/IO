@@ -16,13 +16,13 @@ import java.util.List;
 @Service
 public class NodeService {
 
-    private List<Node> nodes = new ArrayList<>();
+    private ArrayList<Node> nodes = new ArrayList<>();
 
     /**
      * Get all nodes in whole graph
      * @return list of all nodes
      */
-    public List<Node> getAllNodes(){
+    public ArrayList<Node> getAllNodes(){
         return nodes;
     }
 
@@ -32,8 +32,7 @@ public class NodeService {
      * @return node with given id
      */
     public Node getOneNode(Integer id){
-        Node temp = new Node();
-        temp.setId(-1);
+        Node temp = new Node(-1,"TEST","TEST",new ArrayList<>(), new ArrayList<>());
         for (Node n: nodes) {
             if(n.getId().equals(id)){
                 temp =  n;
