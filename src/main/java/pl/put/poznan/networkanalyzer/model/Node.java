@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Class represents a model of Node
@@ -74,7 +76,7 @@ public class Node {
         this.type = type;
     }
 
-    public ArrayList<Integer> getOutgoing() {
+    public List<Integer> getOutgoing() {
         return outgoing;
     }
 
@@ -82,7 +84,7 @@ public class Node {
         this.outgoing = outgoing;
     }
 
-    public ArrayList<Integer> getIncoming() {
+    public List<Integer> getIncoming() {
         return incoming;
     }
 
@@ -114,5 +116,18 @@ public class Node {
      */
     public void deleteOutgoing(Connection connection){ // same as above
         this.outgoing.remove(connection);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return Objects.equals(id, node.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

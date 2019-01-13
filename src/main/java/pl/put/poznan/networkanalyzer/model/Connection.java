@@ -1,5 +1,7 @@
 package pl.put.poznan.networkanalyzer.model;
 
+import java.util.Objects;
+
 public class Connection {
 
 
@@ -10,7 +12,7 @@ public class Connection {
      * @param value given value of a Connection
      * @return
      */
-    private static Integer indexNumber =0;
+    private static Integer indexNumber = 0;
     private Integer index;
     private Integer from;
     private Integer to;
@@ -72,6 +74,22 @@ public class Connection {
         this.from=from;
         this.to=to;
         this.value=value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Connection that = (Connection) o;
+        return Objects.equals(index, that.index) &&
+                Objects.equals(from, that.from) &&
+                Objects.equals(to, that.to) &&
+                Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, from, to, value);
     }
 }
 

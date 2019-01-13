@@ -18,8 +18,8 @@ public class NetAnalService {
     private final
     NodeService nodeService;
 
-    private ArrayList<Connection> connections;
-    private ArrayList<Node> nodes;
+    private List<Connection> connections;
+    private List<Node> nodes;
 
     private ArrayList<Integer> open = new ArrayList<>();
     private ArrayList<Integer> closed = new ArrayList<>();
@@ -43,8 +43,8 @@ public class NetAnalService {
 
         if (source == dest)
             return null;
-        Queue<Integer> queue = new LinkedList<Integer>();
-        Stack<Integer> pathStack = new Stack<Integer>();
+        Queue<Integer> queue = new LinkedList<>();
+        Stack<Integer> pathStack = new Stack<>();
 
         queue.add(source);
         pathStack.add(source);
@@ -52,7 +52,7 @@ public class NetAnalService {
 
         while(!queue.isEmpty()){
             int u = queue.poll();
-            ArrayList<Integer> adjList = nodeService.getOneNode(u).getOutgoing();
+            List<Integer> adjList = nodeService.getOneNode(u).getOutgoing();
 
             for(int v:adjList){
                 if(!visited.containsKey(v)){

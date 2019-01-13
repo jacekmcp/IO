@@ -16,13 +16,13 @@ import java.util.List;
 @Service
 public class NodeService {
 
-    private ArrayList<Node> nodes = new ArrayList<>();
+    private List<Node> nodes = new ArrayList<>();
 
     /**
      * Get all nodes in whole graph
      * @return list of all nodes
      */
-    public ArrayList<Node> getAllNodes(){
+    public List<Node> getAllNodes(){
         return nodes;
     }
 
