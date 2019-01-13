@@ -35,8 +35,13 @@ public class ConnectionService {
     }
 
     public void addConnection(Connection connection) {
+        if (isUnique(connection)){
         connection.setConnectionIndex(connection.getUniqueIndexNumber());
         connections.add(connection);
+        }
+        else{
+            System.out.println("Trying to add already existing or self-connected connection: From "+ connection.getFrom() + " To " + connection.getTo()+ ". Operation not executed");
+        }
     }
 
     public void deleteConnection(Integer index) {
@@ -59,4 +64,12 @@ public class ConnectionService {
         }
         return con;
     }
+
+    public boolean isUnique(Connection connection) {
+        if (connection.getTo().equals(connection.getFrom())) return false;
+        for (Connection c : connections) {
+            if ((c.getFrom().equals(connection.getFrom()) && c.getTo().equals(connection.getTo()))) {
+                return false;
+            }}
+        return true;}
 }
