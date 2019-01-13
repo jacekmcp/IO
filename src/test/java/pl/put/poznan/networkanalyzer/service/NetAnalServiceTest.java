@@ -2,6 +2,7 @@ package pl.put.poznan.networkanalyzer.service;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -43,7 +44,7 @@ public class NetAnalServiceTest {
         connectionList.add(new Connection(4,5,10));
 
         Mockito.when(connectionService.getAllConnections())
-                .thenReturn(connectionList);
+                .thenReturn(this.connectionList);
 
         for (int i = 0; i < 5; i++) {
             nodeList.add(new Node(i+1,TYP,NAME,new ArrayList<>(),new ArrayList<>()));
@@ -61,11 +62,14 @@ public class NetAnalServiceTest {
 
     @Test
     public void bfsTest_bfsType() {
-        Mockito.when(connectionService.getConnectionByNodes(1,2)).thenReturn(connectionList.get(0));
-        Mockito.when(connectionService.getConnectionByNodes(1,3)).thenReturn(connectionList.get(1));
-        Mockito.when(connectionService.getConnectionByNodes(1,4)).thenReturn(connectionList.get(2));
-        Mockito.when(connectionService.getConnectionByNodes(3,5)).thenReturn(connectionList.get(3));
-        Mockito.when(connectionService.getConnectionByNodes(4,5)).thenReturn(connectionList.get(4));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.anyInt(),Matchers.anyInt())).thenReturn(
+                new Connection(1,1,-1)
+        );
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(2))).thenReturn(connectionList.get(0));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(3))).thenReturn(connectionList.get(1));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(4))).thenReturn(connectionList.get(2));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(3),Matchers.eq(5))).thenReturn(connectionList.get(3));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(4),Matchers.eq(5))).thenReturn(connectionList.get(4));
 
         for (int i = 0; i < 5; i++) {
             Mockito.when(nodeService.getOneNode(i)).thenReturn(nodeList.get(i));
