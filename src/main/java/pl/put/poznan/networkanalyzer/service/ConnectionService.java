@@ -57,7 +57,7 @@ public class ConnectionService {
 
     public Connection getConnectionByNodes(Integer id1, Integer id2){
         Connection con = new Connection(id1,id2,-1);
-        con.setValue(-1);
+        con.setValue(-1); // characteristic, not existing Value
         for(Connection c: connections){
             if(c.getFrom()==id1 && c.getTo()==id2){
                 con = c;
@@ -69,8 +69,8 @@ public class ConnectionService {
     public boolean isUnique(Connection connection) {
         if (connection.getTo().equals(connection.getFrom())) return false;
         for (Connection c : connections) {
-            if ((c.getFrom().equals(connection.getFrom()) && c.getTo().equals(connection.getTo()))) {
-                return false;
+            if ((c.getFrom().equals(connection.getFrom()) && c.getTo().equals(connection.getTo()))) { //does that connection already exist?
+                return false; //yes
             }}
-        return true;}
+        return true;} //no
 }
