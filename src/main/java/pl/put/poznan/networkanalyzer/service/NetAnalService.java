@@ -37,6 +37,15 @@ public class NetAnalService {
         this.nodes = nodeService.getAllNodes();
     }
 
+    /**
+     * @Version 3.0
+     * Jako administrator sieci przemysłowej mogę znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując przeszukiwanie wszerz, aby znaleźć najbardziej opłacalne przejście przez sieć
+     * Jako administrator sieci przemysłowej jestem w stanie znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując przeszukiwanie w głąb, aby znaleźć najbardziej opłacalne przejście przez sieć
+     * @param source
+     * @param dest
+     * @param type
+     * @return
+     */
     public ArrayList<Integer> BFSPath(Integer source, Integer dest, String type){
         ArrayList<Integer> shortestPathList = new ArrayList<Integer>();
         HashMap<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
