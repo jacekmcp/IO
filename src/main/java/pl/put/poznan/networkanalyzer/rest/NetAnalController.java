@@ -22,17 +22,17 @@ public class NetAnalController {
 
     @GetMapping("/bfs/{id1}/{id2}")
     public Path getBFS(@PathVariable("id1") Integer id1, @PathVariable("id2") Integer id2){
-        return netAnalService.findBestRoute(id1,id2,"BFS");
+        return netAnalService.findBestRouteByStrategy(id1,id2,"BFS");
     }
 
     @GetMapping("/dfs/{id1}/{id2}")
     public Path getDFS(@PathVariable("id1") Integer id1, @PathVariable("id2") Integer id2){
-        return netAnalService.findBestRoute(id1,id2,"DFS");
+        return netAnalService.findBestRouteByStrategy(id1,id2,"DFS");
     }
 
     @GetMapping("/greedy/{id1}/{id2}")
     public Path getGreedy(@PathVariable("id1") Integer id1, @PathVariable("id2") Integer id2){
-        return netAnalService.findBestRoute(id1,id2,"GREEDY");
+        return netAnalService.findBestRouteByStrategy(id1,id2,"GREEDY");
     }
 
 }

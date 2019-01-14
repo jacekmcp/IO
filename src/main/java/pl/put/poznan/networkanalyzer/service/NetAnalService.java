@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import pl.put.poznan.networkanalyzer.model.Connection;
 import pl.put.poznan.networkanalyzer.model.Node;
 import pl.put.poznan.networkanalyzer.model.Path;
+import pl.put.poznan.networkanalyzer.strategy.DFS;
+import pl.put.poznan.networkanalyzer.strategy.Greedy;
+import pl.put.poznan.networkanalyzer.strategy.ShortestPathContext;
 
 import java.util.*;
 
@@ -96,7 +99,7 @@ public class NetAnalService {
      * Jako administrator sieci przemysłowej jestem w stanie znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując algorytm zachłanny, aby znaleźć opłacalne przejście przez sieć w krótkim czasie
      * @param id1
      * @param id2
-     * @return
+     * @return path
      */
     public boolean greedy(int id1,int id2){
         path.addToPath(id1);
@@ -126,6 +129,18 @@ public class NetAnalService {
         } else if(type.equals("GREEDY")){
             greedy(id1,id2);
         }
+        path.setFullCost(calculateCost(path.getPath()));
+        return path;
+    }
+
+    public Path findBestRouteByStrategy(int a, int b, String type){
+       ShortestPathContext shortestPathContext = new ShortestPathContext(nodeService,connectionService);
+        if (type.equals("DFS")){
+           shortestPathContext.set(new DFS(nodeService,connectionService));
+       } else if(type.equals("GREEDY")){
+           shortestPathContext.set(new Greedy(nodeService,connectionService));
+       }
+        path.setFullPath(shortestPathContext.shortestPath(a,b));
         path.setFullCost(calculateCost(path.getPath()));
         return path;
     }
