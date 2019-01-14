@@ -91,27 +91,21 @@ public class NetAnalService {
         return shortestPathList;
     }
 
-    public void greedy(int id1,int id2) {
-        LinkedList<Integer> stack = new LinkedList<>();
-        stack.add(id1);
-        while(!stack.isEmpty()){
-            open.add(stack.getFirst());
-            for(Integer item: nodeService.getOneNode(stack.getFirst()).getOutgoing()){
-                stack.add(item);
-                if(item == id2){
-                    break;
-                }
-            }
-            stack.sort((a,b) ->{
-                if(connectionService.getConnectionByNodes(id1,a).getValue()>connectionService.getConnectionByNodes(id1,b).getValue()){
-                    return a;
-                } else {
-                    return b;
-                }
-            });
-            int temp = stack.getFirst();
-            stack.clear();
-            stack.add(temp);
+    /**
+     * @Version 4.0
+     * Jako administrator sieci przemysłowej jestem w stanie znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując algorytm zachłanny, aby znaleźć opłacalne przejście przez sieć w krótkim czasie
+     * @param id1
+     * @param id2
+     * @return
+     */
+    public boolean greedy(int id1,int id2){
+        path.addToPath(id1);
+        ArrayList<Integer> pom = nodeService.getOneNode(id1).getOutgoing();
+        if(pom.isEmpty()){
+            return false;
+        } else {
+            pom.sort(Comparator.comparingInt(o -> connectionService.getConnectionByNodes(id1, o).getValue()));
+            return greedy(pom.get(0),id2);
         }
     }
 
@@ -129,9 +123,8 @@ public class NetAnalService {
             path.setFullPath(BFSPath(id1,id2,"BFS"));
         } else if(type.equals("DFS")){
             path.setFullPath(BFSPath(id1,id2,"DFS"));
-        } else if(type.equals("greedy")){
+        } else if(type.equals("GREEDY")){
             greedy(id1,id2);
-            path.setFullPath(open);
         }
         path.setFullCost(calculateCost(path.getPath()));
         return path;

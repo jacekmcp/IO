@@ -45,6 +45,10 @@ public class Path{
         this.path.clear();
     }
 
+    public void addToPath(Integer val){
+        this.path.add(val);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

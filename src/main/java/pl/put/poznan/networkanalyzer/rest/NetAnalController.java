@@ -30,4 +30,9 @@ public class NetAnalController {
         return netAnalService.findBestRoute(id1,id2,"DFS");
     }
 
+    @GetMapping("/greedy/{id1}/{id2}")
+    public Path getGreedy(@PathVariable("id1") Integer id1, @PathVariable("id2") Integer id2){
+        return netAnalService.findBestRoute(id1,id2,"GREEDY");
+    }
+
 }

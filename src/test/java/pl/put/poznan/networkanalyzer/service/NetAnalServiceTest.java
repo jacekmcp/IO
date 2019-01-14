@@ -104,6 +104,27 @@ public class NetAnalServiceTest {
         assertEquals(expectedPath,givenPath);
     }
 
+    @Test
+    public void greedyTest_greedyType() {
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.anyInt(),Matchers.anyInt())).thenReturn(
+                new Connection(1,1,-1)
+        );
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(2))).thenReturn(connectionList.get(0));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(3))).thenReturn(connectionList.get(1));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(1),Matchers.eq(4))).thenReturn(connectionList.get(2));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(3),Matchers.eq(5))).thenReturn(connectionList.get(3));
+        Mockito.when(connectionService.getConnectionByNodes(Matchers.eq(4),Matchers.eq(5))).thenReturn(connectionList.get(4));
+
+        Mockito.when(nodeService.getOneNode(Mockito.anyInt())).thenAnswer(invocationOnMock -> this.nodeList.get((Integer) invocationOnMock.getArguments()[0]-1));
+
+        Path givenPath = netAnalService.findBestRoute(1,5,"GREEDY");
+        ArrayList<Integer> expectedPath = new ArrayList<>();
+        expectedPath.add(1);
+        expectedPath.add(2);
+
+        assertEquals(expectedPath,givenPath.getPath());
+    }
+
     private void setIO(Connection connection) {
         Integer outNode = connection.getFrom();
         Integer inNode = connection.getTo();
