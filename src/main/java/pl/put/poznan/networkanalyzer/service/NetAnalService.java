@@ -38,7 +38,7 @@ public class NetAnalService {
     }
 
     /**
-     * @Version 3.0
+     * @version 3.0
      * Jako administrator sieci przemysłowej mogę znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując przeszukiwanie wszerz, aby znaleźć najbardziej opłacalne przejście przez sieć
      * Jako administrator sieci przemysłowej jestem w stanie znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując przeszukiwanie w głąb, aby znaleźć najbardziej opłacalne przejście przez sieć
      * @param source
@@ -92,7 +92,7 @@ public class NetAnalService {
     }
 
     /**
-     * @Version 4.0
+     * @version 4.0
      * Jako administrator sieci przemysłowej jestem w stanie znaleźć ścieżkę z entry do exit o najmniejszej sumarycznej wartości wykorzystując algorytm zachłanny, aby znaleźć opłacalne przejście przez sieć w krótkim czasie
      * @param id1
      * @param id2
