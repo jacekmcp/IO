@@ -1,12 +1,15 @@
 import pl.put.poznan.networkanalyzer.model.Connection;
 import pl.put.poznan.networkanalyzer.model.Node;
 import org.junit.Test;
+import org.mockito.Mockito;
 import pl.put.poznan.networkanalyzer.service.NodeService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Testing class for NodeService class
@@ -19,6 +22,7 @@ public class NodeServiceTest {
         NodeService ns = new NodeService();
         assertEquals(0,ns.getAllNodes().size());
     }
+
 
     @Test
     public void testGetOneNode() {
@@ -75,11 +79,61 @@ public class NodeServiceTest {
 //        assertNull(ns.getOneNode(id));
     }
 
+
+    ///MOCK TESTY
+
+    @Test
+    public void testMockGetOneNode(){
+        Node mockNode = mock(Node.class);
+        when(mockNode.getId()).thenReturn(1);
+        when(mockNode.getName()).thenReturn("abc");
+
+        NodeService ns = new NodeService();
+        ns.addNode(mockNode);
+        assertTrue(ns.getOneNode(1).getId()==1);
+    }
+
+    @Test
+    public void testMockAddNodegetAllNodes(){
+        Node mockNode1 = mock(Node.class);
+        when(mockNode1.getId()).thenReturn(1);
+        when(mockNode1.getName()).thenReturn("abc");
+        Node mockNode2 = mock(Node.class);
+        when(mockNode1.getId()).thenReturn(2);
+        when(mockNode1.getName()).thenReturn("def");
+
+        NodeService ns = new NodeService();
+        ns.addNode(mockNode1);
+        ns.addNode(mockNode2);
+        assertTrue(ns.getAllNodes().size()==2);
+    }
+
+    @Test
+    public void testUpdateNode(){
+        Node mockNode1 = mock(Node.class);
+        when(mockNode1.getId()).thenReturn(1);
+        when(mockNode1.getName()).thenReturn("abc");
+        when(mockNode1.getType()).thenReturn("entry");
+        when(mockNode1.getOutgoing()).thenReturn(null);
+        when(mockNode1.getIncoming()).thenReturn(null);
+
+        Node n = new Node(2,"def","exit",new ArrayList<Integer>(),new ArrayList<Integer>());
+
+        NodeService ns = new NodeService();
+        ns.addNode(n);
+        ns.updateNode(2,mockNode1);
+
+        assertEquals("abc",ns.getOneNode(1).getName());
+        assertEquals("entry",ns.getOneNode(1).getType());
+        assertEquals(null,ns.getOneNode(1).getOutgoing());
+        assertEquals(null,ns.getOneNode(1).getIncoming());
+    }
+
 //    @Test
 //    public void setIO() {
 //        NodeService ns = new NodeService();
-//        ns.addNode(new Node(1,"name1","regular"));
-//        ns.addNode(new Node(2,"name2","regular"));
+//        ns.addNode(new Node(1,"name1","regular",new ArrayList<Integer>(),new ArrayList<Integer>()));
+//        ns.addNode(new Node(2,"name2","regular",new ArrayList<Integer>(),new ArrayList<Integer>()));
 //
 //        Connection con = new Connection(1,2,3);
 //        con.setConnectionIndex(5);
